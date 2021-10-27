@@ -3,21 +3,32 @@ package com.plusmobileapps.enterpriselazycolumn
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.activity.viewModels
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.plusmobileapps.enterpriselazycolumn.ui.theme.EnterpriseLazyColumnTheme
+import com.plusmobileapps.ui.EnterpriseLazyColumn
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             EnterpriseLazyColumnTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    Scaffold(
+                        topBar = {
+                            TopAppBar {
+                                Text("Enterprise LazyColumn")
+                            }
+                        }
+                    ) {
+                        EnterpriseLazyColumn(flow = viewModel.state)
+                    }
                 }
             }
         }
