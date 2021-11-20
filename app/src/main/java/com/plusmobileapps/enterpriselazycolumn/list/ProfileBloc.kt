@@ -1,4 +1,4 @@
-package com.plusmobileapps.enterpriselazycolumn
+package com.plusmobileapps.enterpriselazycolumn.list
 
 import com.plusmobileapps.ui.ProfileBloc
 import com.plusmobileapps.ui.ProfileBloc.State
@@ -17,7 +17,7 @@ class ProfileBlocImpl(private val scope: CoroutineScope) : ProfileBloc {
 
     init {
         scope.launch {
-            delay((0..5_000L).random())
+            delay((0..10_000L).random())
             _state.value = State(isLoading = false, "Andrew", image = "some-image-path")
         }
     }
